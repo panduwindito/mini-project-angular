@@ -1,0 +1,39 @@
+p, h2{
+  font-family: Poppins, serif;
+  color: white;
+}
+
+#profile{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+}
+
+#detail{
+  background-color: darkblue;
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#detail > element{
+  flex-grow: 1;
+}
+
+#wrapper{
+  margin: 20px;
+}
+
+#key{
+  margin-right: 20px;
+}
+
+*{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+}

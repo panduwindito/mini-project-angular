@@ -1,0 +1,30 @@
+p, h2{
+  font-family: Poppins, serif;
+  color: white;
+}
+
+#profile{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+}
+
+#detail{
+  background-color: darkblue;
+  display: flex;
+  padding: 20px;
+}
+
+#detail > div{
+  flex-grow: 1;
+}
+
+#wrapper{
+  margin: auto;
+  width: 100%;
+}
+
+#key{
+  margin-right: 20px;
+}
