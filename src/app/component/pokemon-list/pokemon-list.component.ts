@@ -1,5 +1,4 @@
 import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {UserService} from "../../service/user.service";
 import {PokemonService} from "../../service/pokemon.service";
 
 @Component({
@@ -44,6 +43,7 @@ export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
       response.map( async (pokemon: any) => {
         const detail = await this.pokemonService.getPokemonDetail(pokemon.url);
         return{
+          id: pokemon.id,
           name: pokemon.name,
           url: pokemon.url,
           image: detail.sprites.front_default,

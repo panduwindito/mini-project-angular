@@ -8,6 +8,7 @@ import { UserComponent } from './feature/user/user.component';
 import { PokemonListComponent } from './component/pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './component/pokemon-detail/pokemon-detail.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
+import { PokemonNewDetailComponent } from './component/pokemon-new-detail/pokemon-new-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
     PokemonListComponent,
     PokemonDetailComponent,
     PaginationComponent,
+    PokemonNewDetailComponent,
   ],
   imports: [
     BrowserModule,
