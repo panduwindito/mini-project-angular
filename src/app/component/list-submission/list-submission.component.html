@@ -1,0 +1,24 @@
+<table class="border-separate border border-slate-500 ...">
+  <thead>
+  <tr>
+    <th class="border border-slate-600 ...">Id</th>
+    <th class="border border-slate-600 ...">Name</th>
+    <th class="border border-slate-600 ...">Email</th>
+    <th class="border border-slate-600 ...">Phone Number</th>
+    <th class="border border-slate-600 ...">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of listData">
+<!--    <td class="border border-slate-700 ...">{{ data }}</td>-->
+    <td class="border border-slate-700 ...">{{ data[0]}}</td>
+    <td class="border border-slate-700 ...">{{ data[1].firstName + data[1].lastName }}</td>
+    <td class="border border-slate-700 ...">{{ data[1].email }}</td>
+    <td class="border border-slate-700 ...">{{ data[1].phoneCountryCode + data[1].phone }}</td>
+    <td class="border border-slate-700 ...">
+      <Button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</Button>
+      <Button (click)="deleteData(data[0])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete</Button>
+    </td>
+  </tr>
+  </tbody>
+</table>
