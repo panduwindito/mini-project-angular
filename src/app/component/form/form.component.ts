@@ -6,7 +6,8 @@ import {PokemonService} from "../../service/pokemon.service";
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrl: './form.component.css',
+  standalone: false
 })
 export class FormComponent implements OnInit {
   @Input() listPokemon: any[] = []

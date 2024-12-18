@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-pokemon-new-detail',
   templateUrl: './pokemon-new-detail.component.html',
-  styleUrl: './pokemon-new-detail.component.css'
+  styleUrl: './pokemon-new-detail.component.css',
+  standalone: false
 })
 export class PokemonNewDetailComponent implements OnInit{
   name: string | null = '';
