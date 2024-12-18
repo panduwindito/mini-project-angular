@@ -26,5 +26,11 @@
     <ul>
       <li [ngClass]="{'active': i === currentEvolve-1}" *ngFor="let s of species; let i = index">{{ s.name }}</li>
     </ul>
+    <button (click)="openForm()" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Buy
+    </button>
   </div>
+</div>
+<div *ngIf="openModal" class="content-center max-w-md mx-auto m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <app-form [listPokemon]="species" [index]="currentEvolve"></app-form>
 </div>

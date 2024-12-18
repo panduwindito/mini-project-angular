@@ -16,12 +16,12 @@ export class PokemonNewDetailComponent implements OnInit{
   evolve: any[] = []
   species: any[] = []
   currentEvolve: number = 1
+  openModal: boolean = false;
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute) {}
 
   async ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
     await this.fetchPokemonDetail()
-    console.log(this.species)
   }
 
   async fetchPokemonDetail(){
@@ -71,5 +71,9 @@ export class PokemonNewDetailComponent implements OnInit{
     audio.src = this.soundUrl;
     audio.load();
     audio.play();
+  }
+
+  openForm(){
+    this.openModal = !this.openModal
   }
 }
