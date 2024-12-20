@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "../../service/pokemon.service";
 import { ActivatedRoute } from '@angular/router';
+import {Store} from "@ngrx/store";
+import { addToCart } from '../../state/cart/cart.actions';
 
 @Component({
   selector: 'app-pokemon-new-detail',
@@ -18,7 +20,11 @@ export class PokemonNewDetailComponent implements OnInit{
   species: any[] = []
   currentEvolve: number = 1
   openModal: boolean = false;
-  constructor(private pokemonService: PokemonService, private route: ActivatedRoute) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private route: ActivatedRoute,
+    private store: Store
+  ) {}
 
   async ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
@@ -76,5 +82,11 @@ export class PokemonNewDetailComponent implements OnInit{
 
   openForm(){
     this.openModal = !this.openModal
+  }
+
+  addToCart(pokemon: any): void {
+    const cartItem = { pokemon, quantity: 1 };
+    alert(`Pokemon ${cartItem.pokemon.name} has been added to your cart!`);
+    this.store.dispatch(addToCart(cartItem));
   }
 }

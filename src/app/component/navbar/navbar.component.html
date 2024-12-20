@@ -25,6 +25,16 @@
           </button>
         </li>
         <li>
+          <button routerLink="/cart">
+            <p class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</p>
+            <span *ngIf="cartItemCount$ | async"
+              class="px-2 py-1 ml-2 text-xs font-bold text-white bg-red-500 rounded-full"
+            >
+        {{ cartItemCount$ | async }}
+      </span>
+          </button>
+        </li>
+        <li>
           <button *ngIf="isLogin" (click)="logout()">
             <p class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> Logout</p>
           </button>

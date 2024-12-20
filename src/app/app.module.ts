@@ -22,6 +22,12 @@ import { LoginFormComponent } from './component/login-form/login-form.component'
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { EditPokemonComponent } from './component/edit-pokemon/edit-pokemon.component';
+import { CartComponent } from './component/cart/cart.component';
+import {StoreModule} from "@ngrx/store";
+import {cartReducer} from "./state/cart/cart.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {PokemonService} from "./service/pokemon.service";
+import { CheckoutComponent } from './component/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,15 +43,28 @@ import { EditPokemonComponent } from './component/edit-pokemon/edit-pokemon.comp
     NavbarComponent,
     LogoutComponent,
     EditPokemonComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(
+      { cart: cartReducer },
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
   ],
   providers: [
+    PokemonService,
     provideHttpClient(),
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
