@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RealtimeDatabaseService} from "../../service/realtime-database.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {PokemonService} from "../../service/pokemon.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,8 @@ export class FormComponent implements OnInit {
   constructor(
     private realtimeDb: RealtimeDatabaseService,
     private formBuilder: FormBuilder,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private router: Router
   ) {
   }
   async ngOnInit() {
@@ -49,8 +51,10 @@ export class FormComponent implements OnInit {
   });
 
   async onSubmit(){
+    console.log("here")
     this.checkoutForm.controls["pokemonToBuy"].setValue(this.selectedPokemon)
     await this.realtimeDb.saveFormSubmission(this.checkoutForm.value)
+    this.router.navigate(['/submission'])
   }
 
   changeShow(event: Event){

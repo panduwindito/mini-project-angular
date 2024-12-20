@@ -18,7 +18,6 @@ import { ListSubmissionComponent } from './component/list-submission/list-submis
 import {environment} from "../environment/environment";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import { LoginFormComponent } from './component/login-form/login-form.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { EditPokemonComponent } from './component/edit-pokemon/edit-pokemon.component';
@@ -28,6 +27,7 @@ import {cartReducer} from "./state/cart/cart.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {PokemonService} from "./service/pokemon.service";
 import { CheckoutComponent } from './component/checkout/checkout.component';
+import {LayoutComponent} from "./layout/layout.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,12 +39,12 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
     FormComponent,
     PokemonCardComponent,
     ListSubmissionComponent,
-    LoginFormComponent,
     NavbarComponent,
     LogoutComponent,
     EditPokemonComponent,
     CartComponent,
     CheckoutComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

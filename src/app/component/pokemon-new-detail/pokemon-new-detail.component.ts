@@ -3,6 +3,7 @@ import {PokemonService} from "../../service/pokemon.service";
 import { ActivatedRoute } from '@angular/router';
 import {Store} from "@ngrx/store";
 import { addToCart } from '../../state/cart/cart.actions';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-pokemon-new-detail',
@@ -11,28 +12,37 @@ import { addToCart } from '../../state/cart/cart.actions';
   standalone: false
 })
 export class PokemonNewDetailComponent implements OnInit{
-  name: string | null = '';
-  img: string | null = '';
+  name: string | null = ''
+  img: string | null = ''
   pokemon: any[] = []
   abilities: any[] = []
   soundUrl: string = ''
   evolve: any[] = []
   species: any[] = []
   currentEvolve: number = 1
-  openModal: boolean = false;
+  openModal: boolean = false
+  isLogin: boolean =  false
+  stat: any[] = []
+
   constructor(
     private pokemonService: PokemonService,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private authService: AuthService
   ) {}
 
   async ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
+    this.isLogin = !!this.authService.getUser();
     await this.fetchPokemonDetail()
   }
 
   async fetchPokemonDetail(){
     const response = await this.pokemonService.getPokemonByName(this.name)
+    this.stat = response.stats
+    this.stat.forEach((status: any)=>{
+      status.width = `width: ${status.base_stat}%`
+    })
     this.pokemon = response
     this.img = response.sprites.front_default
     this.species.push(response.species)

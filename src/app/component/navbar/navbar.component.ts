@@ -8,7 +8,6 @@ import {Store} from "@ngrx/store";
 @Component({
   selector: 'app-navbar',
   standalone: false,
-
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

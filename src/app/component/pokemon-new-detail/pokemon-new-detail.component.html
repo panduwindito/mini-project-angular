@@ -1,35 +1,43 @@
-<div class="content-center max-w-md mx-auto m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-  <a href="#" class="content-center">
+<div class="content-center max-w-md mx-auto m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-700">
     <img class="rounded-t-lg object-center object-contain m-auto" [src]="img" alt="" />
-  </a>
   <div class="p-5">
     <a href="#">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{{ name }}</h5>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{{ name | uppercase }}</h5>
     </a>
-    <button *ngIf="soundUrl" (click)="playAudio()"  class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-black border border-gray-200" >
+    <button *ngIf="soundUrl" (click)="playAudio()"  class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-900 dark:bg-white dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-100 dark:hover:text-black border border-gray-200" >
       Play
     </button>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Abilities</p>
+    <p class="mb-3 mt-3 text-gray-700 dark:text-gray-900 font-bold">Abilities</p>
     <ul>
       <li *ngFor="let ability of abilities">{{ ability.ability.name }}</li>
     </ul>
+    <div *ngFor="let status of stat" class="m-2">
+      <span>{{status.stat.name}}</span>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-blue-600 h-2.5 rounded-full" [style]="status.width"></div>
+      </div>
+    </div>
     <div class="inline-flex mt-2 xs:mt-0">
-      <button (click)="doDevolve()"  class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-black border border-gray-200" >
+      <button (click)="doDevolve()"  class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-100 dark:bg-white dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-100 dark:hover:text-black border border-gray-200" >
         Devolve
       </button>
       <button (click)="doEvolve()" class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white
-     border-s rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-black border border-gray-200" >
+     border-s rounded-e hover:bg-gray-900 dark:bg-white dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-100 dark:hover:text-black border border-gray-200" >
         Evolve
       </button>
     </div>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Evolution</p>
+    <p class="mb-3 mt-3 text-gray-700 dark:text-gray-900 font-bold">Evolution</p>
     <ul>
-      <li [ngClass]="{'active': i === currentEvolve-1}" *ngFor="let s of species; let i = index">{{ s.name }}</li>
+      <div *ngFor="let s of species; let i = index" [ngClass]="{'active': i === currentEvolve-1}" class="m-2 max-w bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-1">
+          <h4 class="mb-2 text-l text-center  tracking-tight text-gray-900 dark:text-white">{{ s.name | uppercase }}</h4>
+        </div>
+      </div>
     </ul>
-    <button (click)="openForm()" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <button (click)="openForm()" class="mr-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       Buy
     </button>
-    <button (click)="addToCart(pokemon)" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <button [disabled]="!isLogin" [ngClass]="{'disabled:bg-slate-200 disabled:text-slate-500 disabled:border-slate-200 ': !isLogin }" (click)="addToCart(pokemon)" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       Add To Cart
     </button>
   </div>

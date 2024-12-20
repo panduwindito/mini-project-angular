@@ -5,12 +5,12 @@
     <li
       *ngFor="let item of cartItems$ | async"
     >
-      <div class="max-w bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="max-w bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-700">
         <div class="p-5">
-            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.pokemon.name | uppercase }}</h4>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Quantity: {{ item.quantity }}</h5>
+            <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{{ item.pokemon.name | uppercase }}</h4>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">Quantity: {{ item.quantity }}</h5>
             <button
-              class="px-4 py-2 text-white bg-red-500" (click)="removeItem(item.pokemon.name)">
+              class="px-4 py-2 text-black bg-red-500" (click)="removeItem(item.pokemon.name)">
               Remove
             </button>
         </div>
@@ -26,7 +26,7 @@
     <button
       *ngIf="(cartItems$ | async)?.length"
       (click)="clearCart()"
-      class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-black border border-gray-200"
+      class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-white dark:bg-white dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white dark:hover:text-black border border-gray-200"
     >
       Delete All
     </button>
@@ -34,7 +34,7 @@
       <a
         *ngIf="(cartItems$ | async)?.length"
         routerLink="/checkout"
-        class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-black border border-gray-200"
+        class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-white dark:bg-white dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white dark:hover:text-black border border-gray-200"
       >
         Go to Checkout
       </a>

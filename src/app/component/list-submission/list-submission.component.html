@@ -1,24 +1,65 @@
-<table class="border-separate border border-slate-500 ...">
-  <thead>
-  <tr>
-    <th class="border border-slate-600 ...">Id</th>
-    <th class="border border-slate-600 ...">Name</th>
-    <th class="border border-slate-600 ...">Email</th>
-    <th class="border border-slate-600 ...">Phone Number</th>
-    <th class="border border-slate-600 ...">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of listData">
-<!--    <td class="border border-slate-700 ...">{{ data }}</td>-->
-    <td class="border border-slate-700 ...">{{ data[0]}}</td>
-    <td class="border border-slate-700 ...">{{ data[1].firstName + data[1].lastName }}</td>
-    <td class="border border-slate-700 ...">{{ data[1].email }}</td>
-    <td class="border border-slate-700 ...">{{ data[1].phoneCountryCode + data[1].phone }}</td>
-    <td class="border border-slate-700 ...">
-      <Button (click)="openDetail(data[0])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</Button>
-      <Button (click)="deleteData(data[0])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete</Button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="m-5 relative overflow-x-hidden shadow-md sm:rounded-lg">
+  <table class="m-3 w-full text-sm text-left rtl:text-right text-black dark:text-black ">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-white dark:text-black dark:border-gray-700">
+    <tr>
+      <th scope="col" class="px-3 py-3">
+        ID
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Name
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Email
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Phone Number
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Action
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listData" class="bg-white border-b dark:bg-white dark:border-gray-700">
+      <th scope="row" class="px-1 py-4 font-medium text-black whitespace-nowrap dark:text-black">
+        {{ data[0]}}
+      </th>
+      <td class="px-1 py-4">
+        {{ data[1].firstName + data[1].lastName }}
+      </td>
+      <td class="px-3 py-4">
+        {{ data[1].email }}
+      </td>
+      <td class="px-3 py-4">
+        {{ (data[1].phoneCountryCode? data[1].phoneCountryCode : '')  + data[1].phone }}
+      </td>
+      <td class="px-3 py-4">
+        <Button (click)="openDetail(data[0])" class="mr-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</Button>
+        <Button (click)="deleteData(data[0])" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-700 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete</Button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="flex flex-col items-center mb-3">
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+      Showing <span class="font-semibold text-gray-900 dark:text-black">{{ currentStart }}</span> to <span class="font-semibold text-gray-900 dark:text-black">{{ currentLast }}</span> of <span class="font-semibold text-gray-900 dark:text-black">{{ totalData }}</span> Entries
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+    <button class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white rounded-s hover:bg-white dark:bg-white dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-100 dark:hover:text-black border border-gray-200" (click)="previousPage()">
+      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+      </svg>
+      Prev
+    </button>
+    <button class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-white
+     border-s rounded-e hover:bg-gray-900 dark:bg-white dark:border-gray-700 dark:text-gray-800 dark:hover:bg-gray-100 dark:hover:text-black border border-gray-200" (click)="nextPage()">
+      Next
+      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+      </svg>
+    </button>
+  </div>
+</div>
+

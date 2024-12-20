@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {RealtimeDatabaseService} from "../../service/realtime-database.service";
 import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 
