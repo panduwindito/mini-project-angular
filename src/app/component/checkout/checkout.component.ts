@@ -23,9 +23,11 @@ export class CheckoutComponent implements OnInit{
   @Input() index: number = 0
   listData: any[] = []
   selectedPokemon: any[] = []
+  finalPokemon: any[] = []
   selectedPokemonName: any[] = []
   showAllArr: boolean[] = []
   quantity: any[] = []
+  totalQuantity: number[] = []
 
   constructor(
     private realtimeDb: RealtimeDatabaseService,
@@ -45,6 +47,7 @@ export class CheckoutComponent implements OnInit{
       this.cartItems = items;
     });
     this.cartItems.forEach((item) => {
+      this.totalQuantity.push(item.quantity)
       const number = [...Array(item.quantity).keys()]
       this.quantity.push(number);
     })
@@ -104,7 +107,20 @@ export class CheckoutComponent implements OnInit{
   });
 
   async onSubmit(){
-    this.checkoutForm.controls["pokemonToBuy"].setValue(this.selectedPokemon)
+    let index = 0
+    this.selectedPokemon.forEach((pokemon:any) => {
+      let number = 1
+      let arr: any[] = []
+      while(number <= this.totalQuantity[index] ){
+        pokemon.forEach((p:any) => {
+          arr.push(p)
+        })
+        number++
+      }
+      this.finalPokemon.push(arr)
+      index++
+    })
+    this.checkoutForm.controls["pokemonToBuy"].setValue(this.finalPokemon)
     await this.realtimeDb.saveFormSubmission(this.checkoutForm.value)
     this.store.dispatch(clearCart());
     this.route.navigate(['/submission'])

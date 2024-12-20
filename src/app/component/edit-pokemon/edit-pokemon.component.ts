@@ -23,7 +23,8 @@ export class EditPokemonComponent implements OnInit, CandeactiveguardGuard{
   };
   @Input() id: string=  ''
   listData: any[] = []
-  selectedPokemon: string[] = []
+  pokemons: any[] = []
+  quantity: number[] = []
   showAll: Boolean = true;
 
   constructor(
@@ -40,7 +41,24 @@ export class EditPokemonComponent implements OnInit, CandeactiveguardGuard{
   async fetchAllPokemon(){
     this.id = this.route.snapshot.paramMap.get('id')!!
     const response = await this.realtimeDb.getFormSubmission(this.id)
-    console.log(response)
+    response.pokemonToBuy.forEach(async (pokemon:any) => {
+      this.pokemons.push(pokemon);
+      this.quantity.push(pokemon.length);
+    })
+    this.listData = await Promise.all(
+      this.pokemons.map(async (names:[]) => {
+        return await Promise.all(
+          names.map(async (name: any) => {
+            const response = await this.pokemonService.getPokemonByName(name)
+            return {
+              name: response.name,
+              img: response.sprites.front_default
+            }
+          })
+        )
+      })
+    )
+    console.log(this.listData);
     this.checkoutForm.patchValue(response)
   }
   checkoutForm = this.formBuilder.group({

@@ -50,7 +50,6 @@ export class RealtimeDatabaseService {
       const response = await firstValueFrom(
         this.http.get(`${this.databaseUrl}/${id}.json`)
       );
-      console.log(response)
       return response;
     } catch (error) {
       console.error('Error fetching form submission:', error);

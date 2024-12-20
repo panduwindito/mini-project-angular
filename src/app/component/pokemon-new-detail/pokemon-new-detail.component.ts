@@ -69,6 +69,10 @@ export class PokemonNewDetailComponent implements OnInit{
       this.img = response.sprites.front_default
       this.soundUrl = response.cries.legacy
       this.abilities = response.abilities
+      this.stat = response.stats
+      this.stat.forEach((status: any)=>{
+        status.width = `width: ${status.base_stat}%`
+      })
     }
   }
 
@@ -80,6 +84,10 @@ export class PokemonNewDetailComponent implements OnInit{
       this.img = response.sprites.front_default
       this.abilities = response.abilities
       this.soundUrl = response.cries.legacy
+      this.stat = response.stats
+      this.stat.forEach((status: any)=>{
+        status.width = `width: ${status.base_stat}%`
+      })
     }
   }
 
